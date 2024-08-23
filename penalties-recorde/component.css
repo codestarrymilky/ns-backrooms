@@ -1,0 +1,189 @@
+
+/* grid布局天下无敌.png */
+
+
+
+/* =============== 正文 =========== */
+/* ====== 被警告人标签 ======= */
+span.staff {
+    --staff-bg-color: 255, 184, 189;
+    --staff-text-color: 148, 19, 30;
+    /* Golden Color */
+    --staff-bg-color: 255, 234, 190;
+    --staff-text-color: 156, 98, 40;
+    display: inline-block;
+    padding: 0.35em 0.5em 0.3em;
+    line-height: 1;
+    margin: 0 0.25em 0.25em 0;
+    border-radius: 0.2em;
+    background-color: rgba(var(--staff-bg-color), 1);
+    color: rgba(var(--staff-text-color), 1);
+    font-size: 0.86em;
+    margin-left: 5px;
+}
+
+
+
+span.admin {
+    --staff-bg-color: 255, 205, 197;
+    --staff-text-color: 155, 40, 48;
+}
+
+span.member {
+    --staff-bg-color: 144,238,144;
+    --staff-text-color: 155, 40, 48;
+}
+
+span.mod {
+    --staff-bg-color: 255, 218, 197;
+    --staff-text-color: 136, 77, 34;
+}
+
+span.cmat {
+    --staff-bg-color: 212, 233, 180;
+    --staff-text-color: 29, 117, 44;
+}
+
+
+/* ====== 基本布局 ======== */
+
+/* grid布局使本在底下的折叠部分转移上方 */
+
+.penalties-recorded{
+      display: grid;
+      grid-template-areas:
+       'collab-start'
+       'collab-end'
+       'text';
+}
+
+/* 命名各div grid-area Name */
+dib.styled-quote-other{grid-area: text;}
+div.styled-quote-bottom{grid-area: collab-end;}
+div.styled-quote-top{grid-area: collab-start;}
+
+
+/* 样式 */
+.styled-quote-other{
+    background-color: rgb(var(--pale-gray-monochrome));
+    padding: 0.1rem 1rem;
+    margin: 0.5rem 0 0.5rem 0.25rem;
+    box-shadow: 0.05rem 0.1rem 0.3rem rgba(var(--black-monochrome), 0.25);
+    grid-area: text;
+}
+
+
+div.styled-quote-top,
+div.styled-quote-bottom{
+     height: 2rem;
+     width: calc(100% - 0.25rem);
+     background-color: rgb(var(--gray-monochrome));
+     margin-bottom: -0.5rem;
+     margin-left: 0.25rem;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     line-height: 1;
+      
+     & a{
+           position: absolute;
+           z-index: 5;
+           height: 100%;
+           width: 100%;
+           top: 0;
+           right: 0;
+           color:white!important;
+           display: grid;
+           palce-items: center;
+           text-align: center;
+     }
+}
+
+
+/* 有点问题，手机端不显示，也许嵌套问题 */
+div.styled-quote-top a,
+div.styled-quote-bottom a{
+       position: absolute;
+       z-index: 5;
+      height: 100%;
+      width: 100%;
+       top: 0;
+       right: 0;
+       color:white!important;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       line-height: 1;
+}
+
+
+
+/* =========== 折叠 ========= */
+
+/* 内部opacity变化动画 */
+@keyframes inner-animation{
+        0%{
+                opacity: 0;
+        }
+
+        100%{
+                opacity: 1;
+        }
+}
+
+
+#u-remind{
+    height: 0;
+    transition: height 3s;
+
+    & .inner{
+           display: none;
+           opacity: 0;
+    }
+
+}
+
+#u-remind:target{
+   height: 200px;
+   overflow-y: auto;
+   overflow-x: hidden;
+
+    & .inner{
+           animation: inner-animation 1s forwards;
+           animation-delay: 1s;
+           display: block;
+     
+            & p span a img.small{
+                        box-sizing: border-box;
+                        width: 30px;
+                        height: 30px;
+                        background-image: none !important;
+                        padding: 0;
+                        border: 2px solid rgb(var(--gray-monochrome));
+                        border-radius: 50%;
+                        margin-right: 12px;
+             }
+
+    }
+
+   & + div + div{
+          display: block;
+   }
+
+   & + div{
+          display: none;
+   }
+}
+
+
+
+.penalties-recorded .styled-quote-bottom{
+     display: none;
+}
+
+/* 表格身份显示 */
+.none{
+      display: none;
+}
+
