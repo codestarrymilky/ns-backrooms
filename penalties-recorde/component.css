@@ -135,7 +135,7 @@ div.styled-quote-bottom a{
 
 #u-remind{
     height: 0;
-    transition: height 3s;
+    transition: height 1s;
 
     & .inner{
            display: none;
